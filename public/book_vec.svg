@@ -1,0 +1,14 @@
+<svg width="91" height="82" viewBox="0 0 91 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold_grad_book" x1="0" y1="41" x2="91" y2="41" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4D990"/>
+      <stop offset="1" stop-color="#CB9B3D"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="14" width="79" height="54" rx="8" stroke="url(#gold_grad_book)" stroke-width="3"/>
+  <path d="M45.5 14V68" stroke="url(#gold_grad_book)" stroke-width="3"/>
+  <path d="M16 24H39" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M16 31H39" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M52 24H75" stroke="#FFFFFF" stroke-width="2"/>
+  <path d="M52 31H75" stroke="#FFFFFF" stroke-width="2"/>
+</svg>

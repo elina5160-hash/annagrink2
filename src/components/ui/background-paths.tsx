@@ -1,0 +1,1390 @@
+"use client";
+import { motion } from "framer-motion";
+import { BottomBar } from "@/components/ui/bottom-bar";
+import Image from "next/image";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+
+ 
+
+export default function BackgroundWithBar(props: { title?: string }) {
+  return (
+    <>
+      <BackgroundPaths {...props} />
+      <BottomBar />
+    </>
+  );
+}
+
+export function BackgroundPaths({ title = "ИНТЕНСИВ" }: { title?: string }) {
+  const words = title.split(" ")
+  const isHome = title === "ДОМОЙ";
+  const isSupport = title === "ПОДДЕРЖКА";
+  const isClub = title === "О КЛУБЕ";
+  const [openAudience, setOpenAudience] = useState(false)
+  const [openInside, setOpenInside] = useState(false)
+  const [openTariff, setOpenTariff] = useState(false)
+  const [hasSub, setHasSub] = useState(false)
+  useEffect(() => {
+    try {
+      const active = localStorage.getItem("subscription:active") === "true"
+      const force = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("unsub") === "1"
+      setHasSub(force ? false : active)
+    } catch {}
+  }, [])
+  if (isSupport) {
+    return (
+      <div
+        className="relative min-h-screen w-full flex items-center justify-center app-stars pt-0 pb-[110px] md:pb-[80px] lg:pb-[65px]"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)" }}
+      >
+        <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: 0 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
+              <img alt="woman" src="/woman.png" style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }} />
+              <div style={{ width: "173px", height: "35px", backgroundColor: "#D3B589", WebkitMaskImage: "url('/надпись.png')", maskImage: "url('/надпись.png')", WebkitMaskSize: "contain", maskSize: "contain", WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center center", maskPosition: "center center" }}></div>
+            </div>
+            
+            <div className="relative" style={{ marginTop: "15px" }}>
+              <svg width="343" height="126" viewBox="0 0 343 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="support_grad_only" x1="171.5" y1="0" x2="171.5" y2="126" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#08102D" />
+                    <stop offset="1" stopColor="#1A285B" />
+                  </linearGradient>
+                </defs>
+                <rect width="343" height="126" rx="20" fill="url(#support_grad_only)" />
+              </svg>
+              <div
+                className="absolute z-10"
+                style={{
+                  left: 0,
+                  top: 0,
+                  width: "343px",
+                  height: "126px",
+                  background: "#000",
+                  mixBlendMode: "hue",
+                  borderRadius: "20px",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                className="absolute z-20"
+                style={{
+                  left: 0,
+                  top: 0,
+                  width: "343px",
+                  height: "126px",
+                  display: "block",
+                }}
+              >
+                <img
+                  src="/замок.png"
+                  alt="lock"
+                  className="absolute z-20"
+                  style={{
+                    left: "10px",
+                    top: "8px",
+                    width: "12px",
+                    height: "12px",
+                    objectFit: "contain",
+                  }}
+                />
+                <svg width="82" height="82" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "27px",
+                    height: "27px",
+                    opacity: 0.7,
+                  }}
+                >
+                   <circle cx="18" cy="18" r="16" stroke="#CB9B3D" strokeWidth="2" />
+                   <path d="M12 18l4 4 8-8" stroke="#CB9B3D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                
+                <div
+                  className="font-libertinus"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    textAlign: "center",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    color: "#8E8E93",
+                  }}
+                >
+                  <span>
+                    Поддержка
+                  </span>
+                  <img 
+                    src="/Vector%2027.svg" 
+                    alt="arrow" 
+                    width="18" 
+                    height="12" 
+                    style={{ 
+                      width: "18px", 
+                      height: "12px",
+                      filter: "grayscale(100%) opacity(0.6)" 
+                    }} 
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+  if (isClub) {
+    return (
+      <div
+        className="relative min-h-screen w-full flex items-start justify-center app-stars pt-5 pb-[110px] md:pb-[80px] lg:pb-[65px]"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)" }}
+      >
+        <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", width: "342px", height: "127px", borderRadius: "20px", background: "linear-gradient(180deg, #08102D 0%, #1A285B 100%)" }}>
+              <img src="/woman.png" alt="woman" style={{ width: "110px", height: "120px", objectFit: "cover", alignSelf: "flex-end" }} />
+              <div
+                style={{
+                  width: "173px",
+                  height: "35px",
+                  backgroundColor: "#D3B589",
+                  WebkitMaskImage: "url('/надпись.png')",
+                  maskImage: "url('/надпись.png')",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                }}
+              />
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
+            <div style={{ width: "343px" }}>
+              <div
+                style={{
+                  width: "343px",
+                  borderRadius: "20px",
+                  background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
+                  padding: "16px",
+                  color: "#fff",
+                }}
+              >
+                <div className="font-libertinus"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "36px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textAlign: "left",
+                  }}
+                >
+                  О КЛУБЕ
+                </div>
+                <div
+                  style={{
+                    marginTop: "5px",
+                    fontFamily: "var(--font-family)",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  «Секретный клуб Анны Гриньковой» – это клуб по подписке для тех, кто хочет быть в поддерживающем пространстве и&nbsp;нуждается в мягкой трансформации.
+                </div>
+              </div>
+              <div
+                style={{
+                  marginTop: "15px",
+                  width: "343px",
+                  borderRadius: "20px",
+                  background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
+                  padding: "16px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div className="font-libertinus"
+                    style={{
+                      fontWeight: 400,
+                      fontSize: "20px",
+                      lineHeight: "95%",
+                      textTransform: "uppercase",
+                      background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textAlign: "left",
+                    }}
+                  >
+                    ДЛЯ КОГО ЭТОТ КЛУБ?
+                  </div>
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => setOpenAudience((v) => !v)} style={{ cursor: "pointer" }}>
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="#D9D9D9" />
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="url(#paint0_linear_43_39)" />
+                    <path d="M7.59375 14.1958L12.2891 9.49805L16.9868 14.1958" stroke="#091130" strokeWidth="2" />
+                    <defs>
+                      <linearGradient id="paint0_linear_43_39" x1="0" y1="12.5483" x2="25.0967" y2="12.5483" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#F4D990" />
+                        <stop offset="1" stopColor="#CB9B3D" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                {openAudience && (
+                  <div style={{ marginTop: "5px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        Для новичков, которые только начинают погружение в астропсихологию
+                      </div>
+                    </div>
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        Для профессиональных астропсихологов, которые хотят находиться в поддерживающем пространстве и находить клиентов
+                      </div>
+                    </div>
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px" }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        Для тех, кто хочет расти и становиться лучше день за днём, находить путь к самому себе
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                style={{
+                  marginTop: "15px",
+                  width: "343px",
+                  borderRadius: "20px",
+                  background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
+                  padding: "16px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div className="font-libertinus"
+                    style={{
+                      fontWeight: 400,
+                      fontSize: "20px",
+                      lineHeight: "95%",
+                      textTransform: "uppercase",
+                      background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textAlign: "left",
+                    }}
+                  >
+                    что внутри клуба?
+                  </div>
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => setOpenInside((v) => !v)} style={{ cursor: "pointer" }}>
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="#D9D9D9" />
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="url(#paint0_linear_inside)" />
+                    <path d="M7.59375 14.1958L12.2891 9.49805L16.9868 14.1958" stroke="#091130" strokeWidth="2" />
+                    <defs>
+                      <linearGradient id="paint0_linear_inside" x1="0" y1="12.5483" x2="25.0967" y2="12.5483" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#F4D990" />
+                        <stop offset="1" stopColor="#CB9B3D" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                {openInside && (
+                  <div style={{ marginTop: "5px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0 }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        ежемесячные индивидуальные разборы от астропсихологов Института
+                      </div>
+                    </div>
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0 }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        ежемесячный урок с Анной Гриньковой по теме месяца
+                      </div>
+                    </div>
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0 }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        психологические подкасты и разборы жизненных ситуаций
+                      </div>
+                    </div>
+                    <div style={{ marginTop: "6px", display: "flex", alignItems: "center", gap: "8px" }}>
+                      <span style={{ width: "6px", height: "6px", background: "#fff", borderRadius: "9999px", flexShrink: 0 }} />
+                      <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                        живое сообщество, в котором ты можешь поделиться, чем угодно и найти соратников и поддержку
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                style={{
+                  marginTop: "15px",
+                  width: "343px",
+                  borderRadius: "20px",
+                  background: "linear-gradient(180deg, #08102d 0%, #1a285b 100%)",
+                  padding: "16px",
+                  color: "#fff",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                  <div className="font-libertinus"
+                    style={{
+                      fontWeight: 400,
+                      fontSize: "20px",
+                      lineHeight: "95%",
+                      textTransform: "uppercase",
+                      background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      textAlign: "left",
+                    }}
+                  >
+                    клубный тариф
+                  </div>
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => setOpenTariff((v) => !v)} style={{ cursor: "pointer" }}>
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="#D9D9D9" />
+                    <circle cx="12.5483" cy="12.5483" r="12.5483" fill="url(#paint0_linear_tariff)" />
+                    <path d="M7.59375 14.1958L12.2891 9.49805L16.9868 14.1958" stroke="#091130" strokeWidth="2" />
+                    <defs>
+                      <linearGradient id="paint0_linear_tariff" x1="0" y1="12.5483" x2="25.0967" y2="12.5483" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#F4D990" />
+                        <stop offset="1" stopColor="#CB9B3D" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                {openTariff && (
+                  <div style={{ marginTop: "5px" }}>
+                    <div style={{ fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                      Для участников клуба доступны специальные цены на каждое обучение в институте (обучение астропсихологии, прогнозирование).
+                    </div>
+                    <div style={{ marginTop: "10px", fontSize: "10px", lineHeight: "130%", fontWeight: 300, textAlign: "left" }}>
+                      Чтобы забрать обучение по клубному тарифу ⬇️ напишите на аккаунт по кнопке ниже и скажите, что вы из клуба
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "15px" }}>
+                      <a
+                        href="https://t.me/Levi_Antonina"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: "242px",
+                          height: "35px",
+                          borderRadius: "5px",
+                          background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                          fontFamily: "var(--font-family)",
+                          fontWeight: 400,
+                          fontSize: "10px",
+                          letterSpacing: "0.06em",
+                          textTransform: "uppercase",
+                          color: "#48351b",
+                          textDecoration: "none",
+                        }}
+                      >
+                        КЛУБНЫЙ ТАРИФ
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div
+      className="relative min-h-screen w-full flex items-start justify-center app-stars pt-5 pb-[110px] md:pb-[80px] lg:pb-[65px]"
+      style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 90px)", backgroundColor: isHome && !hasSub ? "#000" : undefined }}
+    >
+      <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mt-[20px] mb-0">
+          <svg width="343" height="128" viewBox="0 0 343 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="diz2_grad" x1="171.465" y1="0" x2="171.465" y2="127.969" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#08102D" />
+                <stop offset="1" stopColor="#1A285B" />
+              </linearGradient>
+            </defs>
+            <rect width="342.93" height="127.969" rx="20" fill="url(#diz2_grad)" />
+          </svg>
+          <Link
+            href="/admin"
+            className="absolute z-10"
+            style={{
+              left: "22.9453px",
+              top: "7.63574px",
+              width: "110.389px",
+              height: "120.333px",
+              display: "block",
+              borderRadius: "6px",
+              overflow: "hidden",
+              transition: "transform 150ms ease",
+            }}
+            onMouseDown={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
+            }}
+            onMouseUp={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+            }}
+          >
+            <img
+              src="/woman.png"
+              alt="woman"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                imageRendering: "-webkit-optimize-contrast",
+                backfaceVisibility: "hidden",
+                transform: "translateZ(0)",
+                willChange: "transform",
+              }}
+            />
+          </Link>
+          <div
+            className="absolute z-10"
+            style={{
+              right: "25px",
+              top: "15px",
+              width: "173px",
+              height: "35px",
+              backgroundColor: "#D3B589",
+              WebkitMaskImage: "url('/надпись.png')",
+              maskImage: "url('/надпись.png')",
+              WebkitMaskSize: "contain",
+              maskSize: "contain",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              WebkitMaskPosition: "center",
+              maskPosition: "center",
+            }}
+          />
+          <img
+            src="/спецпредл.svg"
+            alt="спецпредл"
+            className="absolute z-10"
+            style={{
+              right: "25px",
+              top: "64px",
+              width: "189px",
+              height: "70px",
+            }}
+          />
+        </motion.div>
+        {!isHome && (
+          <div
+            className="mx-auto z-20"
+            style={{
+              width: "79.88px",
+              height: "81.76px",
+              backgroundImage: "url('/gold gradient  3.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              marginTop: "25px",
+              marginBottom: "25px",
+            }}
+          />
+        )}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: isHome ? "18px" : undefined }}>
+          <svg width="343" height={270} viewBox="0 0 343 270" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: "block" }}>
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#08102d" />
+                <stop offset="100%" stopColor="#1a285b" />
+              </linearGradient>
+            </defs>
+            <rect y={0} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect x={181} y={0} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect y={144} width={162} height={126} rx={20} fill="url(#grad)" />
+            <rect x={181} y={144} width={162} height={126} rx={20} fill="url(#grad)" />
+            
+          </svg>
+          {isHome && !hasSub && (
+            <div className="absolute z-30" style={{ left: 0, top: 0, width: "343px", height: "270px", background: "#000", mixBlendMode: "hue", transition: "opacity 200ms ease" }} />
+          )}
+          {isHome && (
+            <>
+          <Link
+            href="/astrostati"
+            className="absolute z-20"
+            style={{
+              left: 0,
+              top: 0,
+              width: "162px",
+              height: "126px",
+              display: "block",
+            }}
+          >
+            {isHome && !hasSub && (
+              <img
+                src="/замок.png"
+                alt="lock"
+                className="absolute z-20"
+                style={{
+                  left: "10px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  objectFit: "contain",
+                }}
+              />
+            )}
+            <img
+              src="/1пл.svg"
+              alt="2751"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    астростатьи
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </Link>
+          <Link
+            href="/podcasts"
+            className="absolute z-20"
+            style={{
+              left: "181px",
+              top: 0,
+              width: "162px",
+              height: "126px",
+              display: "block",
+            }}
+          >
+            {isHome && !hasSub && (
+              <img
+                src="/замок.png"
+                alt="lock"
+                className="absolute z-20"
+                style={{
+                  left: "10px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  objectFit: "contain",
+                }}
+              />
+            )}
+            <img
+              src="/mikro.svg"
+              alt="mikro"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    подкасты
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </Link>
+          <div
+            className="absolute z-20"
+            style={{
+              left: 0,
+              top: "144px",
+              width: "162px",
+              height: "126px",
+            }}
+          >
+            {isHome && !hasSub && (
+              <img
+                src="/замок.png"
+                alt="lock"
+                className="absolute z-20"
+                style={{
+                  left: "10px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  objectFit: "contain",
+                }}
+              />
+            )}
+            <img
+              src="/kalendar.svg"
+              alt="kalendar"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    расписание
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </div>
+          <a
+            href="https://t.me/+Fm-0h0ZFMxYwNGJi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute z-20"
+            style={{
+              left: "181px",
+              top: "144px",
+              width: "162px",
+              height: "126px",
+              display: "block",
+            }}
+          >
+            {isHome && !hasSub && (
+              <img
+                src="/замок.png"
+                alt="lock"
+                className="absolute z-20"
+                style={{
+                  left: "10px",
+                  top: "8px",
+                  width: "12px",
+                  height: "12px",
+                  objectFit: "contain",
+                }}
+              />
+            )}
+            <img
+              src="/monet.svg"
+              alt="monet"
+                  width="82"
+                  height="82"
+                  className="absolute z-20"
+                  style={{
+                    right: "8px",
+                    top: "17px",
+                    width: "81px",
+                    height: "81px",
+                    opacity: 0.7,
+                  }}
+                />
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "5px",
+                    width: "128px",
+                    textAlign: "left",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    чат
+                  </span>
+                  <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+                </div>
+              </a>
+            </>
+          )}
+          {!isHome && (
+            <>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: 0,
+                  top: 0,
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  1500
+                  <br />
+                  студентов
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  прошли обучение и&nbsp;успешно внедрили астропсихологию в&nbsp;свою жизнь
+                </div>
+              </div>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: "181px",
+                  top: 0,
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  кураторы
+                  <br />
+                  на обучении
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  выпускники института и практикующие астропсихологи
+                </div>
+              </div>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: 0,
+                  top: "144px",
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  синергия
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  трансформационных практик и академической психологии для максимального результата
+                </div>
+              </div>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: "181px",
+                  top: "144px",
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  институт входит в&nbsp;топ-100
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  школ на платформе getcourse
+                </div>
+              </div>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: 0,
+                  top: "288px",
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  весь мир
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  у нас учатся студенты из&nbsp;России, стран СНГ, Канады, САШ, стран Европы
+                </div>
+              </div>
+              <div
+                className="absolute z-20"
+                style={{
+                  left: "181px",
+                  top: "288px",
+                  width: "162px",
+                  height: "126px",
+                }}
+              >
+                
+                <div
+                  className="font-libertinus"
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    top: "17px",
+                    width: "150px",
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textAlign: "left",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  диплом
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "17px",
+                    bottom: "18px",
+                    width: "130px",
+                    fontFamily: "var(--font-family, var(--font-geist-sans))",
+                    fontWeight: 300,
+                    fontSize: "10px",
+                    lineHeight: "130%",
+                    color: "#fff",
+                    textAlign: "left",
+                  }}
+                >
+                  астропсихолога от&nbsp;ведущего нишевого института получают выпускники
+                </div>
+              </div>
+            </>
+          )}
+        </motion.div>
+        {isHome && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "14px" }}>
+            <svg width="343" height="126" viewBox="0 0 343 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bottom_grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#08102d" />
+                  <stop offset="100%" stopColor="#1a285b" />
+                </linearGradient>
+              </defs>
+              <rect y={0} width={162} height={126} rx={20} fill="url(#bottom_grad)" />
+              <rect x={181} y={0} width={162} height={126} rx={20} fill="url(#bottom_grad)" />
+            </svg>
+            {isHome && !hasSub && (
+              <div className="absolute z-30" style={{ left: 0, top: 0, width: "343px", height: "126px", background: "#000", mixBlendMode: "hue", transition: "opacity 200ms ease" }} />
+            )}
+            <div
+              className="absolute z-20"
+              style={{ left: 0, top: 0, width: "162px", height: "126px" }}
+            >
+              {isHome && !hasSub && (
+                <div
+                  className="absolute z-20"
+                  style={{
+                    left: "10px",
+                    top: "8px",
+                    width: "12px",
+                    height: "12px",
+                    backgroundColor: "#D3B589",
+                    WebkitMaskImage: "url('/замок.png')",
+                    maskImage: "url('/замок.png')",
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                  }}
+                />
+              )}
+              <img
+                src="/book.svg"
+                alt="book"
+                width="82"
+                height="82"
+                className="absolute z-20"
+                style={{ right: "8px", top: "17px", width: "81px", height: "81px", opacity: 0.7 }}
+              />
+              <div
+                className="font-libertinus"
+                style={{
+                  position: "absolute",
+                  left: "17px",
+                  bottom: "18px",
+                  fontWeight: 400,
+                  fontSize: "17px",
+                  lineHeight: "95%",
+                  textTransform: "uppercase",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "5px",
+                  width: "128px",
+                  textAlign: "left",
+                }}
+              >
+                <span
+                  style={{
+                    background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  автостатьи
+                </span>
+                <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+              </div>
+            </div>
+            <div
+              className="absolute z-20"
+              style={{ left: "181px", top: 0, width: "162px", height: "126px" }}
+            >
+              {isHome && !hasSub && (
+                <div
+                  className="absolute z-20"
+                  style={{
+                    left: "10px",
+                    top: "8px",
+                    width: "12px",
+                    height: "12px",
+                    backgroundColor: "#D3B589",
+                    WebkitMaskImage: "url('/замок.png')",
+                    maskImage: "url('/замок.png')",
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                  }}
+                />
+              )}
+              <img
+                src="/flo.svg"
+                alt="flo"
+                width="82"
+                height="82"
+                className="absolute z-20"
+                style={{ right: "8px", top: "17px", width: "81px", height: "81px", opacity: 0.7 }}
+              />
+              <div
+                className="font-libertinus"
+                style={{
+                  position: "absolute",
+                  left: "17px",
+                  bottom: "18px",
+                  fontWeight: 400,
+                  fontSize: "17px",
+                  lineHeight: "95%",
+                  textTransform: "uppercase",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "5px",
+                  width: "128px",
+                  textAlign: "left",
+                }}
+              >
+                <span
+                  style={{
+                    background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  разборы
+                </span>
+                <img src="/Vector%2027.svg" alt="arrow" width="18" height="12" style={{ width: "18px", height: "12px" }} />
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {isHome && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "14px" }}>
+            <svg width="343" height="114" viewBox="0 0 343 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pay_grad" x1="171.5" y1="0" x2="171.5" y2="114" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#08102D" />
+                  <stop offset="1" stopColor="#1A285B" />
+                </linearGradient>
+              </defs>
+              <rect width="343" height="114" rx="20" fill="url(#pay_grad)" />
+            </svg>
+            <div
+              className="absolute z-20"
+              style={{
+                left: 0,
+                top: 0,
+                width: "343px",
+                height: "114px",
+                display: "block",
+                padding: "16px",
+              }}
+            >
+              <div
+                className="font-libertinus"
+                style={{
+                  fontWeight: 400,
+                  fontSize: "17px",
+                  lineHeight: "95%",
+                  textTransform: "uppercase",
+                  background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textAlign: "left",
+                }}
+              >
+                тестовый просмотр
+              </div>
+              <div
+                style={{
+                  marginTop: "6px",
+                  fontFamily: "var(--font-family)",
+                  fontWeight: 300,
+                  fontSize: "10px",
+                  lineHeight: "130%",
+                  color: "#fff",
+                  textAlign: "left",
+                }}
+              >
+                Для доступа к полной программе необходимо оплатить.
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                <a
+                  href="/subscription"
+                  className="font-libertinus"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "12px",
+                    width: "242px",
+                    height: "35px",
+                    borderRadius: "5px",
+                    background: "linear-gradient(90deg, #f4d990 0%, #cb9b3d 100%)",
+                    fontFamily: "var(--font-family)",
+                    fontWeight: 400,
+                    fontSize: "10px",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    color: "#48351b",
+                  }}
+                >
+                  перейти к оплате
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {isSupport && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }} className="relative max-w-[343px] mx-auto mb-0" style={{ marginTop: "18px" }}>
+            <svg width="343" height="114" viewBox="0 0 343 114" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="support_grad" x1="171.5" y1="0" x2="171.5" y2="114" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#08102D" />
+                  <stop offset="1" stopColor="#1A285B" />
+                </linearGradient>
+              </defs>
+              <rect width="343" height="114" rx="20" fill="url(#support_grad)" />
+            </svg>
+            <a
+              href="https://t.me/Levi_Antonina"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute z-20"
+              style={{
+                left: 0,
+                top: 0,
+                width: "343px",
+                height: "114px",
+                display: "block",
+                padding: "16px",
+                transition: "transform 150ms ease",
+              }}
+              onMouseDown={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(0.98)"
+              }}
+              onMouseUp={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "scale(1)"
+              }}
+            >
+              <div className="flex items-center justify-between w-full h-full">
+                <div
+                  className="font-libertinus"
+                  style={{
+                    fontWeight: 400,
+                    fontSize: "17px",
+                    lineHeight: "95%",
+                    textTransform: "uppercase",
+                    background: "linear-gradient(180deg, #f4d990 0%, #cb9b3d 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  Поддержка
+                </div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="18" cy="18" r="16" stroke="#CB9B3D" strokeWidth="2" />
+                  <path d="M12 18l4 4 8-8" stroke="#CB9B3D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </a>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}

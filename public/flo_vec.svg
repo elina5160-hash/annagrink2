@@ -1,0 +1,17 @@
+<svg width="76" height="70" viewBox="0 0 76 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gold_grad_flo" x1="0" y1="35" x2="76" y2="35" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4D990"/>
+      <stop offset="1" stop-color="#CB9B3D"/>
+    </linearGradient>
+  </defs>
+  <circle cx="38" cy="35" r="6" fill="url(#gold_grad_flo)"/>
+  <ellipse cx="38" cy="18" rx="8" ry="13" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="38" cy="52" rx="8" ry="13" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="21" cy="35" rx="8" ry="13" transform="rotate(-90 21 35)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="55" cy="35" rx="8" ry="13" transform="rotate(90 55 35)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="25" cy="23" rx="7" ry="11" transform="rotate(-45 25 23)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="51" cy="47" rx="7" ry="11" transform="rotate(-45 51 47)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="51" cy="23" rx="7" ry="11" transform="rotate(45 51 23)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+  <ellipse cx="25" cy="47" rx="7" ry="11" transform="rotate(45 25 47)" stroke="url(#gold_grad_flo)" stroke-width="3"/>
+</svg>
